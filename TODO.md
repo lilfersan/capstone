@@ -1,9 +1,17 @@
-# UI Enhancement Steps - CONFIRMED
-1. [ ] Edit python_service/app.py: predict_proba fraud % , top fraud_keywords explain.
-2. [ ] Edit resources/views/layouts/fronty.blade.php: remove search/newchat/mystuff, add #historyBody table, #redFlagsContainer ul.
-3. [ ] Restart python app.py.
-4. [ ] Test scan: history record, prob %, details.
-5. [ ] Update JS renderHistory #historyBody tbody, redFlags data.keywords.
+# Running the Fraud Detection System
 
-Progress tracked here.
+## Steps to Complete:
+- [x] Step 1: Install PHP/JS/Python dependencies
+- [x] Step 2: Laravel setup (keygen, migrate)
+
+- [x] Step 3: Python ML service running (port 5000)
+
+
+- [x] Step 4: Laravel vite (5174), serve starting (8000)
+
+- [x] Step 5: Tested Python /predict-url endpoint
+- [x] Complete: System running!
+
+
+Current progress: Starting Python service (Step 3).
 

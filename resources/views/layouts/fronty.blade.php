@@ -222,8 +222,24 @@
             document.getElementById('analysisResults').style.display = 'block';
             document.getElementById('riskPercent').innerText = data.score + "%";
             document.getElementById('riskStatus').innerText = data.status;
-            document.getElementById('aiMessage').innerText = data.message;
+            document.getElementById('aiMessage').innerText = data.explain || data.message || 'Analysis complete.';
             
+            // Populate Detailed Findings
+            const flagsContainer = document.getElementById('redFlagsContainer');
+            if (data.keywords && data.keywords.length > 0) {
+                flagsContainer.innerHTML = data.keywords.map(kw => `
+                    <div class="list-group-item px-0 py-3 d-flex align-items-start border-bottom">
+                        <i class="fas fa-exclamation-triangle text-warning mt-1 me-3"></i>
+                        <div>
+                            <h6 class="mb-1 text-capitalize fw-bold">${kw}</h6>
+                            <p class="mb-0 text-muted small">This keyword is highly associated with scam job postings in our dataset.</p>
+                        </div>
+                    </div>
+                `).join('');
+            } else {
+                flagsContainer.innerHTML = '<div class="list-group-item text-muted border-0 bg-transparent px-0"><i class="fas fa-check-circle text-success me-2"></i> No specific high-risk keywords detected.</div>';
+            }
+
             // Gauge Color Logic
             const gauge = document.getElementById('gaugeBody');
             let statusColor = data.score >= 70 ? "#e74c3c" : (data.score >= 40 ? "#f1c40f" : "#2ecc71");

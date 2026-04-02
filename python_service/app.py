@@ -17,17 +17,31 @@ model = pickle.load(open(model_path, 'rb'))
 tfidf = pickle.load(open(tfidf_path, 'rb'))
 
 
+from playwright.sync_api import sync_playwright
+
 def scrape_text_from_url(url):
     try:
-        # Pretend to be a browser so the website doesn't block us
-        headers = {'User-Agent': 'Mozilla/5.0'}
-        response = requests.get(url, headers=headers, timeout=10)
-        soup = BeautifulSoup(response.text, 'html.parser')
-        
-        # Pull all text from paragraphs and headers
-        lines = [p.get_text() for p in soup.find_all(['p', 'h1', 'h2', 'li'])]
-        return " ".join(lines)
-    except:
+        # Launch a headless Chromium browser using Playwright
+        with sync_playwright() as p:
+            browser = p.chromium.launch(headless=True)
+            page = browser.new_page()
+            
+            # Pretend to be a real browser heavily
+            page.set_extra_http_headers({'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36'})
+            
+            # Go to the URL and wait until the network is quiet (avoids reading empty skeletons)
+            page.goto(url, wait_until="networkidle", timeout=20000)
+            
+            # Grab the fully loaded HTML that the user would see
+            html_content = page.content()
+            browser.close()
+            
+            # Parse it the same way as before
+            soup = BeautifulSoup(html_content, 'html.parser')
+            lines = [p.get_text() for p in soup.find_all(['p', 'h1', 'h2', 'li'])]
+            return " ".join(lines)
+    except Exception as e:
+        print(f"[Scraper Error] {e}")
         return None
 
 @app.route('/predict-url', methods=['POST'])
