@@ -1,4 +1,9 @@
 <x-guest-layout>
+    <div class="mb-6">
+        <h2 class="text-2xl font-['Outfit'] font-bold text-white">Create a new password</h2>
+        <p class="mt-1 text-sm text-slate-400">Choose a strong password to secure your account.</p>
+    </div>
+
     <form method="POST" action="{{ route('password.store') }}">
         @csrf
 
