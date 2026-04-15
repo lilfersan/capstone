@@ -17,8 +17,8 @@ class ScanController extends Controller
             'url' => ['required', 'url'],
         ]);
 
-        // call the Python API running on localhost:5000
-        $response = Http::post(config('services.python.url') . '/predict-url', [
+        // call the Python FastAPI service running on localhost:8001
+        $response = Http::timeout(25)->post(config('services.python.url') . '/analyze', [
             'url' => $request->input('url'),
         ]);
 
@@ -27,6 +27,12 @@ class ScanController extends Controller
             return response()->json(['error' => 'Python service unreachable'], 502);
         }
 
-        return response()->json($response->json());
+        $payload = $response->json();
+        if (! is_array($payload)) {
+            $payload = [];
+        }
+
+        return response()->json($payload);
     }
+
 }

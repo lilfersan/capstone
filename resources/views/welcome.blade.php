@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>AI Job Analyzer | Cyber Security Tool</title>
+    <link rel="icon" type="image/svg+xml" href="{{ asset('jobguard-favicon.svg?v=5') }}">
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -30,8 +31,11 @@
     <header class="w-full px-6 py-6 z-10 relative border-b border-white/5 bg-[#070b14]/50 backdrop-blur-md">
         <div class="max-w-7xl mx-auto flex items-center justify-between">
             <div class="flex items-center gap-3">
-                <div class="h-10 w-10 rounded-xl bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center shadow-[0_0_15px_rgba(34,211,238,0.4)]">
-                    <i class="fas fa-shield-halved text-white text-lg"></i>
+                <div class="relative h-10 w-10 rounded-xl bg-gradient-to-br from-cyan-400 via-sky-500 to-blue-600 flex items-center justify-center shadow-[0_0_15px_rgba(34,211,238,0.4)] overflow-hidden">
+                    <div class="absolute inset-0 bg-[radial-gradient(circle_at_16%_50%,rgba(102,246,255,0.5),rgba(102,246,255,0)_62%)]"></div>
+                    <svg class="relative h-5 w-5 text-white" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path d="M12 3.8 6.7 6.1v4.3c0 3.1 2.1 5.9 5.3 6.9 3.2-1 5.3-3.8 5.3-6.9V6.1L12 3.8Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
                 </div>
                 <h1 class="text-xl font-bold tracking-wide text-white uppercase font-['Outfit']">Job<span class="text-cyan-400">Guard</span></h1>
             </div>
@@ -76,14 +80,14 @@
             <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
                 @auth
                     <a href="{{ url('/dashboard') }}" class="w-full sm:w-auto bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold py-4 px-8 rounded-xl transition-all shadow-[0_0_20px_rgba(6,182,212,0.4)] hover:shadow-[0_0_30px_rgba(6,182,212,0.6)] flex items-center justify-center gap-3">
-                        <span>Go to Scanner</span> <i class="fas fa-arrow-right"></i>
+                        <span>Go to Dashboard</span> <i class="fas fa-arrow-right"></i>
                     </a>
                 @else
                     <a href="{{ route('register') }}" class="w-full sm:w-auto bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold py-4 px-8 rounded-xl transition-all shadow-[0_0_20px_rgba(6,182,212,0.4)] hover:shadow-[0_0_30px_rgba(6,182,212,0.6)] flex items-center justify-center gap-3">
                         <span>Get Started</span> <i class="fas fa-user-plus"></i>
                     </a>
                     <a href="{{ route('login') }}" class="w-full sm:w-auto bg-slate-800/50 hover:bg-slate-700/50 border border-white/10 text-white font-semibold py-4 px-8 rounded-xl transition-all flex items-center justify-center">
-                        Sign In
+                        Sign In 
                     </a>
                 @endauth
             </div>

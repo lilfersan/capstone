@@ -5,8 +5,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="icon" type="image/svg+xml" href="{{ asset('jobguard-favicon.svg?v=5') }}">
 
-    <title>{{ config('app.name', 'JobGuard') }}</title>
+    <title>AI Job Analyzer | Cyber Security Tool</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -29,8 +30,11 @@
         <div class="relative z-10 w-full flex flex-col items-center">
             <a href="{{ url('/') }}" class="flex flex-col items-center gap-3">
                 <div
-                    class="h-14 w-14 rounded-2xl bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center shadow-[0_0_20px_rgba(34,211,238,0.4)]">
-                    <i class="fas fa-shield-halved text-white text-2xl"></i>
+                    class="relative h-14 w-14 rounded-2xl bg-gradient-to-br from-cyan-400 via-sky-500 to-blue-600 flex items-center justify-center shadow-[0_0_20px_rgba(34,211,238,0.4)] overflow-hidden">
+                    <div class="absolute inset-0 bg-[radial-gradient(circle_at_16%_50%,rgba(102,246,255,0.5),rgba(102,246,255,0)_62%)]"></div>
+                    <svg class="relative h-7 w-7 text-white" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path d="M12 3.8 6.7 6.1v4.3c0 3.1 2.1 5.9 5.3 6.9 3.2-1 5.3-3.8 5.3-6.9V6.1L12 3.8Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
                 </div>
                 <div class="text-center">
                     <h1 class="text-2xl font-['Outfit'] font-black tracking-wide text-white uppercase">Job<span
